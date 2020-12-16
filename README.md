@@ -1,4 +1,4 @@
-# DeckLinkAPI ROS
+# DeckLink ROS
 Exposes the a IDeckLinkVideoInputFrame to ROS.
 
 # Build

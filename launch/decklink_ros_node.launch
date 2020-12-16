@@ -1,0 +1,13 @@
+<launch>
+        <arg name="device_id" default="0" doc="Set Decklink device."/>
+        <arg name="mode_id" default="7" doc="Set the input format, e.g. 7 == 1080p50"/>
+        <arg name="pixel_format_id" default="0" doc="Set input pixel format, e.g. 0 == 8 bit YUV (4:2:2)"/>
+
+        <group ns="decklink">
+            <param name="device_id" type="int" value="$(arg device_id)"/>
+            <param name="mode_id" type="int" value="$(arg mode_id)"/>
+            <param name="pixel_format_id" type="int" value="$(arg pixel_format_id)"/>
+        </group>
+
+        <node pkg="decklink_ros" name="decklink_ros_node" type="decklink_ros_node" output="screen"/>
+</launch>
