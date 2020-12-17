@@ -14,6 +14,9 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  image_transport
+  sensor_msgs
+  camera_info_manager
 )
 
 # System dependencies are found with CMake's conventions
