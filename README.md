@@ -11,3 +11,5 @@ catkin_make -DDECKLINK_SDK_DIR="path/to/Blackmagic_DeckLink_SDK"
 
 # Launch
 
+# Node
+Code based on the [decklink_capture](https://github.com/andreasBihlmaier/decklink_capture) implementation.
