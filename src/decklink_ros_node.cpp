@@ -8,8 +8,8 @@ int main(int argc, char** argv) {
 
     std::string camera_name, calibration_url;
 
-    nh.getParam("camera_name", camera_name);
-    nh.getParam("calibration_url", calibration_url);
+    nh.getParam("decklink_ros_node/camera_name", camera_name);
+    nh.getParam("decklink_ros_node/calibration_url", calibration_url);
 
     RosImagePubThread img_pub_thread(nh, camera_name, calibration_url);
     if (!img_pub_thread.init()) {
