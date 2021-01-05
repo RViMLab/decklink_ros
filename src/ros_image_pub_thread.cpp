@@ -2,7 +2,7 @@
 
 
 
-RosImagePubThread::RosImagePubThread(ros::NodeHandle& nh, const std::string& camera_name, const std::string& calibration_url_) 
+RosImagePubThread::RosImagePubThread(ros::NodeHandle& nh, const std::string& camera_name, const std::string& calibration_url) 
   : camera_name_(camera_name),
     calibration_url_(calibration_url),
     frame_width_(0),

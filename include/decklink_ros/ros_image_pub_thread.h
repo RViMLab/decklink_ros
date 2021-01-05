@@ -13,7 +13,7 @@
 
 class RosImagePubThread {
     public:
-        RosImagePubThread(ros::NodeHandle& nh, const std::string& camera_name, const std::string& calibration_url_);
+        RosImagePubThread(ros::NodeHandle& nh, const std::string& camera_name, const std::string& calibration_url);
 
         ~RosImagePubThread();
 
