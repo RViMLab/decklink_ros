@@ -21,7 +21,7 @@ bool RosImagePubThread::init() {
     image_transport_ = new image_transport::ImageTransport(nh_);
     camera_info_manager_ = new camera_info_manager::CameraInfoManager(nh_);
     camera_info_manager_->setCameraName(camera_name_);
-    image_publisher_ = image_transport_->advertiseCamera(camera_name_.append("/image_raw"), 1);
+    image_publisher_ = image_transport_->advertiseCamera("image_raw", 1);
     publish_thread_ = new std::thread(std::bind(&RosImagePubThread::publishImages_, this));
     ros::NodeHandle privateNodeHandle("~");
     if (privateNodeHandle.hasParam("frame_id")) {
