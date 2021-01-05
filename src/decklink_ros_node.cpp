@@ -6,8 +6,6 @@ int main(int argc, char** argv) {
     ros::init(argc, argv, "decklink_ros_node");
     ros::NodeHandle nh;
 
-    int device_id, mode_id, pixel_format_id;
-
     RosImagePubThread img_pub_thread(nh);
     if (!img_pub_thread.init()) {
         ROS_ERROR("decklink_ros_node: Failed to initialize RosImagePubThread.");
