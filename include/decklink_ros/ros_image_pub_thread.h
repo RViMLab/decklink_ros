@@ -13,7 +13,7 @@
 
 class RosImagePubThread {
     public:
-        RosImagePubThread(ros::NodeHandle& nh);
+        RosImagePubThread(ros::NodeHandle& nh, const std::string& camera_name, const std::string& calibration_url_);
 
         ~RosImagePubThread();
 
@@ -25,7 +25,8 @@ class RosImagePubThread {
 
         DeckLinkCapture* decklink_capture_;
 
-        std::string camera_name_;
+        const std::string camera_name_;
+        const std::string calibration_url_;
 
         unsigned frame_width_;
         unsigned frame_height_;

@@ -2,8 +2,9 @@
 
 
 
-RosImagePubThread::RosImagePubThread(ros::NodeHandle& nh) 
-  : camera_name_("decklink"),
+RosImagePubThread::RosImagePubThread(ros::NodeHandle& nh, const std::string& camera_name, const std::string& calibration_url_) 
+  : camera_name_(camera_name),
+    calibration_url_(calibration_url),
     frame_width_(0),
     frame_height_(0),
     frame_bytes_per_pixel_(0),
@@ -19,8 +20,7 @@ RosImagePubThread::~RosImagePubThread() {
 
 bool RosImagePubThread::init() {
     image_transport_ = new image_transport::ImageTransport(nh_);
-    camera_info_manager_ = new camera_info_manager::CameraInfoManager(nh_);
-    camera_info_manager_->setCameraName(camera_name_);
+    camera_info_manager_ = new camera_info_manager::CameraInfoManager(nh_, camera_name_, calibration_url_);
     image_publisher_ = image_transport_->advertiseCamera("image_raw", 1);
     publish_thread_ = new std::thread(std::bind(&RosImagePubThread::publishImages_, this));
     ros::NodeHandle privateNodeHandle("~");

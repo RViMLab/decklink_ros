@@ -1,3 +1,6 @@
 <launch>
-    <node pkg="decklink_ros" name="decklink_ros_node" type="decklink_ros_node" output="screen"/>
+    <node pkg="decklink_ros" name="decklink_ros_node" type="decklink_ros_node" output="screen">
+        <param name="camera_name" type="str" value="decklink"/>
+        <param name="calibration_url" type="str" value=""/>  <!-- possibly set yaml calibration file -->
+    </node>
 </launch>
