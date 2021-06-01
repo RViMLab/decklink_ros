@@ -15,5 +15,5 @@ To laaunch the decklink ros node, build and source the package, then run
 roslaunch decklink_ros decklink_ros_node.launch
 ```
 
-# Node
+# Note
 Code based on the [decklink_capture](https://github.com/andreasBihlmaier/decklink_capture) implementation.
