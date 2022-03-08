@@ -85,20 +85,25 @@ void RosImagePubThread::publishImages_() {
             image_queue_.pop();
         }
 
-        sensor_msgs::Image image;
-        image.header.seq = frame_count_;
-        image.header.stamp = ros::Time::now();
-        image.header.frame_id = frame_id_;
-        image.height = frame_height_;
-        image.width = frame_width_;
-        image.encoding = sensor_msgs::image_encodings::YUV422;
+        // convert to bgr
+        cv::Mat img_cv(frame_height_, frame_width_, CV_8UC2, frame_raw);
+        cv::cvtColor(img_cv, img_cv, cv::COLOR_YUV2BGR_UYVY);
 
-        image.step = frame_width_ * frame_bytes_per_pixel_;
-        image.data = std::vector<uint8_t>((uint8_t*)frame_raw, ((uint8_t*)frame_raw) + frame_byte_size_);
+        // create bridge
+        std_msgs::Header header;
+        header.seq = frame_count_;
+        header.stamp = ros::Time::now();
+        header.frame_id = frame_id_;
+        cv_bridge::CvImage img_bridge(header, sensor_msgs::image_encodings::BGR8, img_cv);
+
+        // create image message
+        sensor_msgs::Image img_msg;
+        img_bridge.toImageMsg(img_msg);
+
         sensor_msgs::CameraInfo cameraInfo = camera_info_manager_->getCameraInfo();
-        cameraInfo.header.stamp = image.header.stamp;
-        cameraInfo.header.frame_id = image.header.frame_id;
-        image_publisher_.publish(image, cameraInfo);
+        cameraInfo.header.stamp = header.stamp;
+        cameraInfo.header.frame_id = header.frame_id;
+        image_publisher_.publish(img_msg, cameraInfo);
 
         free(frame_raw);
     }

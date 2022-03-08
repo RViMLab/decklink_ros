@@ -62,7 +62,8 @@ bool DeckLinkCapture::init() {
         return false;
     }
 
-    BMDDisplayMode display_mode = bmdModeHD1080p50; // possibly search for formats here
+    // BMDDisplayMode display_mode = bmdModeHD1080p50; // possibly search for formats here
+    BMDDisplayMode display_mode = bmdModeHD1080p5994;
     BMDPixelFormat pixel_format = bmdFormat8BitYUV;
 
     if (deckLinkInput->EnableVideoInput(display_mode, pixel_format, 0) != S_OK) {

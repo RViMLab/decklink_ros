@@ -17,10 +17,12 @@ find_package(catkin REQUIRED COMPONENTS
   image_transport
   sensor_msgs
   camera_info_manager
+  cv_bridge
 )
 
 # System dependencies are found with CMake's conventions
 find_package(DeckLinkAPI REQUIRED)
+find_package(OpenCV REQUIRED COMPONENTS core imgproc)
 
 ###################################
 ## catkin specific configuration ##
@@ -73,6 +75,7 @@ add_executable(${PROJECT_NAME}_node src/decklink_ros_node.cpp)
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${DeckLinkAPI_LIBRARIES}
+  opencv_core opencv_imgproc
 )
 
 target_link_libraries(${PROJECT_NAME}_node
