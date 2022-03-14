@@ -6,7 +6,7 @@ To build, download and install [Blackmagic Desktop Video](https://www.blackmagic
 
 ```shell
 source /opt/ros/melodic/setup.bash # or similar
-catkin_make -DDECKLINK_SDK_DIR="path/to/Blackmagic_DeckLink_SDK"
+catkin_make -DDECKLINK_SDK_DIR="path/to/Blackmagic_DeckLink_SDK"  # e.g. -DDECKLINK_SDK_DIR="$HOME/Downloads/Blackmagic_DeckLink_SDK_12.2.2/Blackmagic DeckLink SDK 12.2.2/Linux"
 ```
 
 # Launch
