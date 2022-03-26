@@ -22,7 +22,7 @@ bool DeckLinkRosPubThread::init() {
     image_publisher_ = image_transport_->advertiseCamera("image_raw", 1);
     publish_thread_ = std::make_unique<std::thread>(std::bind(&DeckLinkRosPubThread::publishImages_, this));
 
-    decklink_capture_ = std::unique_ptr<DeckLinkCapture>();
+    decklink_capture_ = std::make_unique<DeckLinkCapture>();
     if (!decklink_capture_->init()) {
         RCLCPP_ERROR(this->get_logger(), "Failed to init DeckLinkCapture");
         return false;
