@@ -26,18 +26,16 @@ find_package(cv_bridge REQUIRED)
 find_package(DeckLinkAPI REQUIRED)
 
 # Decklink ROS library
-add_library(
-  ${PROJECT_NAME}
-  src/decklink_capture.cpp src/decklink_ros_pub_thread.cpp
+add_library(${PROJECT_NAME}
+  src/decklink_capture.cpp 
+  src/decklink_ros_pub_thread.cpp
 )
 
-target_link_libraries(
-  ${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}
   ${DeckLinkAPI_LIBRARIES}
 )
 
-target_include_directories(
-  ${PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
@@ -46,8 +44,7 @@ target_include_directories(
     src
 )
 
-ament_target_dependencies(
-  ${PROJECT_NAME}
+ament_target_dependencies(${PROJECT_NAME}
   rclcpp
   image_transport
   std_msgs
@@ -57,23 +54,19 @@ ament_target_dependencies(
 )
 
 # Executable spinning Decklink ROS node
-add_executable(
-  ${PROJECT_NAME}_node
+add_executable(${PROJECT_NAME}_node
   src/${PROJECT_NAME}_node.cpp
 )
 
-target_link_libraries(
-  ${PROJECT_NAME}_node
+target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}
 )
 
-ament_target_dependencies(
-  ${PROJECT_NAME}_node
+ament_target_dependencies(${PROJECT_NAME}_node
   rclcpp
 )
 
-target_include_directories(
-  ${PROJECT_NAME}_node
+target_include_directories(${PROJECT_NAME}_node
   PRIVATE
     ${DeckLinkAPI_INCLUDE_DIRS}
     src
@@ -90,22 +83,19 @@ ament_export_dependencies(
   cv_bridge
 )
 
-install(
-  DIRECTORY include/
+install(DIRECTORY include/
   DESTINATION include
 )
 
-install(
-  TARGETS ${PROJECT_NAME}
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
   EXPORT ${PROJECT_NAME}Targets
   LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
   INCLUDES DESTINATION include
 )
 
-install(
-  TARGETS ${PROJECT_NAME}_node
-  DESTINATION lib/${PROJECT_NAME}
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ament_package()
