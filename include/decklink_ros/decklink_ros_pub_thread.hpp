@@ -19,6 +19,7 @@
 
 #include <decklink_capture.hpp>
 
+
 class DeckLinkRosPubThread : public rclcpp::Node {
     public:
         DeckLinkRosPubThread();
