@@ -12,7 +12,7 @@
 #include <queue>
 #include <condition_variable>
 
-#include <decklink_capture.h>
+#include <decklink_capture.hpp>
 
 class RosImagePubThread {
     public:
