@@ -1,6 +1,7 @@
-#include <decklink_capture.h>
+#include <decklink_capture.hpp>
 
-DeckLinkCapture::DeckLinkCapture() : refCount_(0), frame_count_(0), callback_(0) {    };
+
+DeckLinkCapture::DeckLinkCapture() : refCount_(0), frame_count_(0), callback_(0) {    }
 
 ULONG DeckLinkCapture::AddRef(void)
 {
@@ -18,7 +19,7 @@ ULONG DeckLinkCapture::Release(void)
 	return newRefValue;
 }
 
-HRESULT DeckLinkCapture::VideoInputFrameArrived(IDeckLinkVideoInputFrame* video_frame, IDeckLinkAudioInputPacket* audio_input) {
+HRESULT DeckLinkCapture::VideoInputFrameArrived(IDeckLinkVideoInputFrame* video_frame, IDeckLinkAudioInputPacket*) {
     if (!video_frame) {
         return S_OK;
     }
@@ -40,7 +41,7 @@ HRESULT DeckLinkCapture::VideoInputFrameArrived(IDeckLinkVideoInputFrame* video_
 
     return S_OK;
 
-};
+}
 
 bool DeckLinkCapture::init() {
     IDeckLinkIterator* deckLinkIterator = CreateDeckLinkIteratorInstance();
@@ -76,4 +77,4 @@ bool DeckLinkCapture::init() {
     }
 
     return true;
-};
+}

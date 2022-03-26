@@ -1,23 +1,16 @@
-#include <ros/ros.h>
+#include <rclcpp/rclcpp.hpp>
 
-#include <decklink_ros/ros_image_pub_thread.h>
+#include <decklink_ros/decklink_ros_pub_thread.hpp>
+
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "decklink_ros_node");
-    ros::NodeHandle nh;
-
-    std::string camera_name, calibration_url;
-
-    nh.getParam("decklink_ros_node/camera_name", camera_name);
-    nh.getParam("decklink_ros_node/calibration_url", calibration_url);
-
-    RosImagePubThread img_pub_thread(nh, camera_name, calibration_url);
-    if (!img_pub_thread.init()) {
-        ROS_ERROR("decklink_ros_node: Failed to initialize RosImagePubThread.");
-        std::exit(-1);
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<DeckLinkRosPubThread>();
+    if (!node->init()) {
+        RCLCPP_ERROR(node->get_logger(), "Failed to initialize.");
+        return -1;
     }
-
-    ros::spin();
-
+    rclcpp::spin(node);
+    rclcpp::shutdown();
     return 0;
 }
