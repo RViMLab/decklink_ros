@@ -27,10 +27,10 @@ def generate_launch_description():
         package="decklink_ros",
         executable="decklink_ros_node",
         namespace=LaunchConfiguration("cname"),
-        parameters=[
-            {"cname": LaunchConfiguration("cname")},
-            {"url": LaunchConfiguration("url")}
-        ]
+        parameters=[{
+            "cname": LaunchConfiguration("cname"),
+            "url": LaunchConfiguration("url")
+        }]
     )
 
     return LaunchDescription(
