@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DECKLINK_ROS__DECKLINK_ROS_PUB_THREAD_HPP_
+#define DECKLINK_ROS__DECKLINK_ROS_PUB_THREAD_HPP_
 
 #include <condition_variable>
 #include <exception>
@@ -55,3 +56,4 @@ private:
   std::unique_ptr<image_transport::ImageTransport> image_transport_;
   std::unique_ptr<camera_info_manager::CameraInfoManager> camera_info_manager_;
 };
+#endif // DECKLINK_ROS__DECKLINK_ROS_PUB_THREAD_HPP_

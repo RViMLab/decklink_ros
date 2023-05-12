@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DECKLINK_ROS__DECKLINK_CAPTURE_HPP_
+#define DECKLINK_ROS__DECKLINK_CAPTURE_HPP_
 
 #include <cstdio>
 #include <functional>
@@ -33,3 +34,4 @@ private:
 
   DeckLinkCaptureCallbackType callback_;
 };
+#endif // DECKLINK_ROS__DECKLINK_CAPTURE_HPP_
